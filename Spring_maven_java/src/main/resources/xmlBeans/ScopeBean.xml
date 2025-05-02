@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--
+        在spring的ioc容器，在默认是按照单例创建的，即配置一个bean对象后，ioc容器只会创建一个bean实例。
+        如果，我们希望ioc容器配置的某个bean对象，是以多个实例形式创建的则可以通过配置scope="prototype"来指定
+
+        1.默认是单例singleton，在启动容器时，默认就会创建，并放在singletonObjects中
+        2.当<bean scope="prototype”/>设置为多实例机制后，该bean是在getBean时才创建
+        3.如果是单例singleton，同时希望在getBean时才创建，可以指定懒加载lazy-init="true"（注意默认是false)
+        4.如果是多例prototype，无论lazy-init属性值是什么，bean都是在getBean使创建
+        5.通常情况下，lazy-init就使用默认值false，在开发看来，用空间换时间是值得的.
+    -->
+    <bean class="com.tuanfans.beans.Student" id="student1">
+        <property name="name" value="tuanfans"/>
+    </bean>
+
+    <bean class="com.tuanfans.beans.Student" id="student2" scope="prototype">
+        <property name="name" value="tuanfans"/>
+    </bean>
+    <!-- scope属性默认为scope="singleton"，即单例 -->
+    <bean class="com.tuanfans.beans.Student" id="student3">
+        <property name="name" value="tuanfans"/>
+    </bean>
+
+</beans>

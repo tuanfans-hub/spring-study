@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    注意：配置文件放在src/main/resources目录下
+        1.配置Monster对象/javaBean
+        2.在beans中可以配置多个bean
+        3.一个bean就是一个java对象
+        4.class属性用于指定类的全路径 -> spring底层使用反射创建
+        5.id属性表示该java对象在spring容器中的唯一标识，可通过id获取到该java对象
+    -->
+    <bean class="com.tuanfans.beans.Monster" id="monster1">
+        <property name="id" value="1"/>
+        <property name="name" value="白骨精"/>
+        <property name="skill" value="伪装"/>
+    </bean>
+
+    <bean class="com.tuanfans.beans.Monster" id="monster2">
+        <property name="id" value="2"/>
+        <property name="name" value="孙悟空"/>
+        <property name="skill" value="七十二变"/>
+    </bean>
+
+</beans>

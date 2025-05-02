@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    bean对象创建是由JVM完成的，然后执行如下方法
+        1.执行构造器
+        2.执行setter相关方法
+        3.调用bean的初始化的方法（需要配置）
+        4.使用bean(通过getBean方法获取bean对象)
+        5.当容器关闭时候，调用bean的销毁方法（需要配置）
+    -->
+    <!--
+        init-method属性：指定初始化方法；执行时机由spring容器控制
+        destroy-method属性：指定销毁方法；执行时机由spring容器控制 ———在容器关闭的时候执行
+    -->
+    <bean class="com.tuanfans.beans.LC_Student" id="student1"
+          init-method="init" destroy-method="destroy">
+        <property name="name" value="tuanfans"/>
+    </bean>
+</beans>

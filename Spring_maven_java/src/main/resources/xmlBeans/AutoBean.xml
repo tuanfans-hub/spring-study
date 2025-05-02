@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--
+    **手动装配bean
+    配置userDao
+    <bean class="com.tuanfans.dao.impl.UserDaoImpl" id="userDao1"/>
+    **配置userService
+    <bean class="com.tuanfans.service.UserService" id="userService1">
+        <property name="userDao" ref="userDao1"/>
+    </bean>
+    **配置userServiceAction
+    <bean class="com.tuanfans.action.UserServiceAction" id="userServiceAction1">
+        <property name="userService" ref="userService1"/>
+    </bean>
+-->
+    <!--自动装配bean
+        1.属性autowire
+        2.autowire="byType" 根据类型自动给对象的属性赋值，
+        要求：在配置文件中，只能存在一个该类型的bean对象
+        3.autowire="byName" 根据名称自动给对象的属性赋值,
+            比如下面的 autowire="byName" class="com.tuanfans.action.UserServiceAction"
+            （1） 先看 UserServiceAction 属性 private UserService userService;
+            （2）再根据这个属性的setXxx()方法的xxx来找到象id
+                例如：public void setUserService()就会找id=userService对象来进行自动装配
+                例如：public void setUserService520()就会找id=userService520对象来进行自动装配
+            （3）如果没有就装配失败
+        4.如果bean对象中没有属性，则无需设置autowire属性
+    -->
+    <bean class="com.tuanfans.dao.impl.UserDaoImpl" id="userDao"/>
+    <bean autowire="byType" class="com.tuanfans.service.UserService" id="userService"/>
+    <bean autowire="byName" class="com.tuanfans.action.UserServiceAction" id="userServiceAction"/>
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="com.tuanfans.beans.Cat" id="tom">
+        <property name="name" value="Tom"/>
+        <property name="age" value="2"/>
+    </bean>
+
+    <bean class="com.tuanfans.beans.SpELBean" id="spELBean">
+        <property name="name" value="#{'TuanFans'}"/>
+        <property name="age" value="#{20}"/>
+        <!--
+        支持运算赋值
+        <property name="age" value="#{10*2}"/>
+        -->
+        <property name="weight" value="#{52.5}"/>
+        <property name="cat" value="#{tom}"/>
+        <!--<property name="cat" value="#{new com.tuanfans.beans.Cat('Tom', 2)}"/>-->
+        <!--<property name="cat" ref="cat"/>-->
+        <property name="catName" value="#{tom.name}"/>
+        <!--参数为普通方法的返回值-->
+        <property name="show" value="#{spELBean.toShow('TuanFans','Tom')}"/>
+        <!--参数为静态方法的返回值-->
+        <property name="read" value="#{T(com.tuanfans.beans.SpELBean).toRead()}"/>
+    </bean>
+</beans>

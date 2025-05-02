@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="com.tuanfans.beans.Master" id="master">
+        <property name="name" value="太上老君"/>
+        <!--
+        对List属性的注入：
+        方式一：
+        1.使用<list>标签，在标签中添加<ref>标签，
+        2.<ref>标签的bean属性指向要注入的bean的id</ref>
+        方式二：
+        1.使用<list>标签，在标签中添加<bean>标签
+        -->
+        <property name="monsterList">
+            <list>
+                <ref bean="monster1"/>
+                <ref bean="monster2"/>
+                <bean class="com.tuanfans.beans.Monster">
+                    <property name="id" value="3"/>
+                    <property name="name" value="老鼠精"/>
+                    <property name="skill" value="偷吃庄稼"/>
+                </bean>
+            </list>
+        </property>
+
+        <!--对Map属性的注入：-->
+        <property name="monsterMap">
+            <map>
+                <entry key="1" value-ref="monster1"/>
+                <entry key="2" value-ref="monster2"/>
+                <entry key="3">
+                    <bean class="com.tuanfans.beans.Monster">
+                        <property name="id" value="3"/>
+                        <property name="name" value="老鼠精"/>
+                        <property name="skill" value="偷吃庄稼"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+
+        <!--对Set属性的注入：-->
+        <property name="monsterSet">
+            <set>
+                <ref bean="monster1"/>
+                <ref bean="monster2"/>
+                <bean class="com.tuanfans.beans.Monster">
+                    <property name="id" value="3"/>
+                    <property name="name" value="老鼠精"/>
+                    <property name="skill" value="偷吃庄稼"/>
+                </bean>
+            </set>
+        </property>
+
+        <!-- 对数组属性的注入： -->
+        <property name="monsterName">
+            <array>
+                <value>白骨精</value>
+                <value>牛魔王</value>
+                <value>老鼠精</value>
+            </array>
+        </property>
+
+        <!-- 对Properties属性的注入： -->
+        <property name="props">
+            <props>
+                <prop key="Monster1">白骨精</prop>
+                <prop key="Monster2">牛魔王</prop>
+                <prop key="Monster3">老鼠精</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean class="com.tuanfans.beans.Monster" id="monster1">
+        <property name="id" value="1"/>
+        <property name="name" value="白骨精"/>
+        <property name="skill" value="伪装"/>
+    </bean>
+
+    <bean class="com.tuanfans.beans.Monster" id="monster2">
+        <property name="id" value="2"/>
+        <property name="name" value="牛魔王"/>
+        <property name="skill" value="避水金睛兽"/>
+    </bean>
+</beans>

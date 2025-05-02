@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--    通过ref实现对象引用-->
+    <bean class="com.tuanfans.dao.impl.UserDaoImpl" id="userDao"/>
+
+    <bean class="com.tuanfans.service.UserService" id="userService">
+        <!--
+            ref="userDao"表示bean对象userDao的id；
+            UserService这个类中的对象属性usrDao的引用对象是bean标签id=userDao的对象
+        -->
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <!-- 配置内部bean实现对象引用 -->
+    <bean class="com.tuanfans.service.UserService" id="userService2">
+        <property name="userDao">
+            <bean class="com.tuanfans.dao.impl.UserDaoImpl"/>
+        </property>
+    </bean>
+</beans>

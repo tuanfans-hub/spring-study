@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="com.tuanfans.factory.MyFactoryBean" id="factoryBean1">
+        <property name="key" value="key1" />
+    </bean>
+
+    <bean class="com.tuanfans.factory.MyFactoryBean" id="factoryBean2">
+        <property name="key" value="key2"/>
+    </bean>
+
+    <bean class="com.tuanfans.factory.MyFactoryBean" id="factoryBean3">
+        <property name="key" value="key3"/>
+    </bean>
+
+    <!--
+        Bean配置信息重用：
+        abstract 属性指定当前Bean是否为抽象Bean，如果为true则当前Bean不能实例化，只能被继承。
+        parent 属性指定当前Bean的属性值从parent指定的Bean中继承。
+    -->
+    <bean class="com.tuanfans.factory.MyFactoryBean" id="parentBean" abstract="true">
+        <property name="key" value="key1" />
+    </bean>
+    <bean class="com.tuanfans.factory.MyFactoryBean" id="factoryBean4" parent="factoryBean1"/>
+    <bean class="com.tuanfans.factory.MyFactoryBean" id="factoryBean5" parent="parentBean"/>
+</beans>

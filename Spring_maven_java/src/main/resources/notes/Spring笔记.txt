@@ -1,0 +1,19 @@
+类加载路径：
+ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+普通Java工程：beans.xml文件的位置是通过类加载路径得到的
+    获取类加载的路径：
+    File file = new File(this.getClass().getResource("/").getPath());
+
+Maven工程中有区别：在Maven工程中，不同种类的文件被要求放到指定的包中
+1.main.java包：只能放用于实现功能的java文件
+2.main.resource包：只能存放配置文件、静态资源文件
+3.main.webapp.WEB-INF包：存放web应用配置文件
+4.main.webapp：存放web相关配置和资源文件
+5.test.java包：只能放用于测试的java文件
+6.test.resource包：只能存放测试资源目录
+
+
+1.Spring Expression Language，Spring表达式语言，简称SpEL。支持运行时查询并可以操作对象。
+2.和EL表达式一样，SpEL根据JavaBean风格的getXxx()、setXxx()方法定义的属性访问对象
+3.SpEL使用#{...}作为定界符，所有在大框号中的字符都将被认为是SpEL表达式。
+

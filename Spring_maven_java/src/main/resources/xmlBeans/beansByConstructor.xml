@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="com.tuanfans.beans.Master" id="master"/>
+    <bean class="com.tuanfans.beans.Monster" id="monster1">
+        <!--    通过构造器配置bean
+            1.constructor-org标签可以指定使用构造器的参数
+            2.value表示构造器的参数的值
+            3.index表示构造器的参数的索引，从0开始
+            4.name表示构造器的参数的名称
+            5.type表示构造器的参数的类型
+        -->
+        <!-- 根据index指定构造器 -->
+        <constructor-arg value="1" index="1"/>
+        <constructor-arg ref="master" index="0"/>
+        <constructor-arg value="白骨精" index="2"/>
+        <constructor-arg value="伪装" index="3"/>
+        <!--    通过属性配置bean-->
+<!--        <property name="id" value="1"/>-->
+<!--        <property name="name" value="白骨精"/>-->
+<!--        <property name="skill" value="伪装"/>-->
+    </bean>
+
+    <bean class="com.tuanfans.beans.Monster" id="monster2">
+        <!--    通过构造器配置bean-->
+        <!-- 根据name指定构造器 -->
+        <constructor-arg ref="master" name="master"/>
+        <constructor-arg value="2" name="id"/>
+        <constructor-arg value="猪八戒" name="name"/>
+        <constructor-arg value="逃跑" name="skill"/>
+        <!--    通过属性配置bean-->
+<!--        <property name="id" value="2"/>-->
+<!--        <property name="name" value="猪八戒"/>-->
+<!--        <property name="skill" value="逃跑"/>-->
+    </bean>
+
+    <bean class="com.tuanfans.beans.Monster" id="monster3">
+        <!-- 也可以根据type指定构造器，但是不建议使用！-->
+        <constructor-arg ref="master" index="0"/>
+        <constructor-arg value="3" index="1"/>
+        <constructor-arg value="孙悟空" index="2"/>
+        <constructor-arg value="七十二变" index="3"/>
+    </bean>
+
+</beans>

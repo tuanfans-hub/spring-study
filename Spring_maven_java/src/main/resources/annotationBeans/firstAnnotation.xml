@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--
+        1.component-scan标签：要对指定包下的类和子包下的类进行扫描，并注册为bean
+        2.base-package属性：指定要扫描的包
+        3.当扫描到类时，会根据类名进行注册，类名首字母小写，作为bean的id
+        4.当Spring容器创建/初始化时，就会扫描配置的包下的所有存在注解
+        @Component、@Service、@Repository、@Controller注解的类，并注册为bean
+        5.use-default-filters属性：默认值为true;默认情况下，Spring会扫描所有类.
+        6.<context:include-filter>标签：指定扫描的过滤规则；
+            使用该标签时，需将默认过滤规则设置为false，否则不会生效。
+        7.type属性：指定过滤规则的类型，有：annotation、assignable、aspectj、regex
+        8.expression属性：指定过滤规则。
+        9.<context:exclude-filter>标签：指定不扫描的过滤规则,默认情况下，Spring会扫描所有类；
+            所以使用该标签时，需使用默认过滤规则。
+        10.@Component注解：用于标记一个类为bean，并注册为bean
+        11.@Service注解：用于标记一个类为service，并注册为bean
+        12.@Repository注解：用于标记一个类为dao，并注册为bean
+        13.@Controller注解：用于标记一个类为controller，并注册为bean
+        14.其中@Service、@Repository、@Controller注解都是继承了@Component注解的，即@Component注解的子注解。
+     -->
+    <context:component-scan base-package="com.tuanfans.component" use-default-filters="true">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+
+</beans>

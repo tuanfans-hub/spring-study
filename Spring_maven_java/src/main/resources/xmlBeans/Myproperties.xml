@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--通过属性文件（my.properties）配置bean-->
+    <!--指定属性文件-->
+    <context:property-placeholder location="classpath:xmlBeans/my.properties"/>
+    <bean class="com.tuanfans.beans.Cat" id="cat1">
+        <property name="name" value="${cat1Name}"/>
+        <property name="age" value="${cat1Age}"/>
+    </bean>
+
+    <bean class="com.tuanfans.beans.Cat" id="cat2">
+        <property name="age" value="${cat2Age}"/>
+        <property name="name" value="${cat2Name}"/>
+    </bean>
+
+    <bean class="com.tuanfans.beans.Cat" id="cat3">
+        <property name="age" value="${cat3Age}"/>
+        <property name="name" value="${cat3Name}"/>
+    </bean>
+</beans>

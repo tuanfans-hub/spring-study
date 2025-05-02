@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        通过静态工厂创建对象:
+        1.class 属性指定静态工厂的类路径
+        2.factory-method 属性指定静态工厂的方法返回对象
+        3.使用构造器注入方式指定参数
+    -->
+    <bean class="com.tuanfans.factory.MyStaticFactory" id="staticFactory1" factory-method="getMonster">
+        <constructor-arg value="monster1"/>
+    </bean>
+
+    <bean class="com.tuanfans.factory.MyStaticFactory" id="staticFactory2" factory-method="getMonster">
+        <constructor-arg value="monster2"/>
+    </bean>
+
+    <!--
+        通过实例工厂创建对象:
+        1.factory-bean 属性指定实例工厂的beanId
+        2.factory-method 属性指定实例工厂的方法返回对象
+        3.使用构造器注入方式指定参数
+    -->
+    <bean class="com.tuanfans.factory.MyInstanceFactory" id="instanceFactory"/>
+    <bean id="myInstance1" factory-bean="instanceFactory" factory-method="getMonster">
+        <constructor-arg value="monster3"/>
+    </bean>
+    <bean id="myInstance2" factory-bean="instanceFactory" factory-method="getMonster">
+        <constructor-arg value="monster1"/>
+    </bean>
+</beans>

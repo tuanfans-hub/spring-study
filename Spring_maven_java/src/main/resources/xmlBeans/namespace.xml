@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    通过命名空间创建对象：
+        命名空间的属性名必须和对象的属性名一样；
+        命名空间的名称可以程序员自己决定
+        建议使用命名空间前缀c或p,避免出现不必要的错误
+        c和p的区别：
+        1.使用 p: 命名空间：
+            当 Bean 的属性需要通过 Setter 方法注入时。
+            当需要为 Bean 的部分属性赋值时。
+        2.使用 c: 命名空间：
+            当 Bean 的属性必须通过构造器注入时。
+            当 Bean 的构造器参数较多，且希望明确参数传递时。
+    -->
+    <bean class="com.tuanfans.beans.Master" id="master"/>
+    <bean class="com.tuanfans.beans.Monster" id="monster1"
+          p:master-ref="master"
+          p:id="500"
+          p:name="沙和尚"
+          p:skill="任劳任怨"
+    />
+</beans>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--定义一个util:list-->
+    <util:list id="monsterList">
+        <ref bean="monster1"/>
+        <ref bean="monster2"/>
+    </util:list>
+    <bean class="com.tuanfans.beans.Master" id="master">
+        <property name="monsterList" ref="monsterList"/>
+    </bean>
+
+    <bean class="com.tuanfans.beans.Monster" id="monster1">
+        <property name="id" value="1"/>
+        <property name="name" value="白骨精"/>
+        <property name="skill" value="伪装"/>
+    </bean>
+
+    <bean class="com.tuanfans.beans.Monster" id="monster2">
+        <property name="id" value="2"/>
+        <property name="name" value="牛魔王"/>
+        <property name="skill" value="避水金睛兽"/>
+    </bean>
+</beans>

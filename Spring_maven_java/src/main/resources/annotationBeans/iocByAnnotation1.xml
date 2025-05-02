@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <!--
+       注解配置bean：
+       <context:component-scan base-package="com.tuanfans.component"/>
+       扫描com.tuanfans.component包下的所有存在@Component、@Service、@Repository、@Controller注解的类，
+       并注册为bean。
+    -->
+    <context:component-scan base-package="com.tuanfans.component"/>
+
+    <!-- 导入配置文件 -->
+    <context:property-placeholder location="classpath:annotationBeans/my.properties"/>
+
+    <!--
+    XML配置bean
+    <bean class="com.tuanfans.component.myDao.daoImpl.UserDaoImplA" id="userDaoImplA">
+        <property name="name" value="TuanFansA"/>
+    </bean>
+    <bean class="com.tuanfans.component.myDao.daoImpl.UserDaoImplA" id="userDaoImplB">
+        <property name="name" value="TuanFansB"/>
+    </bean>
+    <context:component-scan base-package="com.tuanfans.component.myService"/>
+    <bean class="com.tuanfans.component.myService.serviceImpl.userServiceImpl" id="userServiceImpl">
+        <property name="userDao" ref="userDaoImplA"/>
+    </bean>
+    -->
+</beans>

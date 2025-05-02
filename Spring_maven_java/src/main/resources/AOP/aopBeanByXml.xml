@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--目标对象（待代理对象）-->
+    <bean id="catDaoImplByXml" class="com.tuanfans.AOP.dao.daoImpl.CatDaoImplByXml">
+        <property name="name" value="小菊"/>
+    </bean>
+    <!-- 切面类 -->
+    <bean id="daoAspectByXml" class="com.tuanfans.AOP.aspect.DaoAspectByXml"/>
+    <!-- 配置AOP -->
+    <aop:config>
+        <!-- 配置切点 -->
+        <!-- 配置在aop:config标签中的切点为全局切点，可被通知引用 -->
+        <aop:pointcut id="pointcut"
+                      expression="execution(* com.tuanfans.AOP.dao.daoImpl.CatDaoImplByXml.getCat(..))"/>
+        <!-- 配置切面 -->
+        <aop:aspect ref="daoAspectByXml">
+            <!-- 配置通知 -->
+            <aop:before pointcut-ref="pointcut" method="methodBefore"/>
+            <aop:after pointcut-ref="pointcut" method="methodAfter"/>
+            <aop:after-throwing pointcut-ref="pointcut" method="methodAfterThrowing" throwing="e"/>
+            <aop:around  pointcut-ref="pointcut" method="methodAround"/>
+            <aop:after-returning pointcut-ref="pointcut" method="methodAfterReturning" returning="o"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 属性级联赋值配置 -->
+    <bean class="com.tuanfans.beans.Master" id="master"/>
+
+    <bean class="com.tuanfans.beans.Monster" id="monster">
+        <property name="master" ref="master"/>
+        <!-- 给master的name属性赋值【级联属性赋值】 -->
+        <property name="master.name" value="太上老君"/>
+        <property name="id" value="1"/>
+        <property name="name" value="白骨精"/>
+        <property name="skill" value="伪装"/>
+    </bean>
+</beans>

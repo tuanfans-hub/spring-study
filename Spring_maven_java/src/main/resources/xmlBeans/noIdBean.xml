@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 当bean对象没有配置id属性时，id的默认值为[class值#编号] -->
+    <bean class="com.tuanfans.beans.Monster">
+        <property name="id" value="1"/>
+        <property name="name" value="白骨精"/>
+        <property name="skill" value="伪装"/>
+    </bean>
+
+    <bean class="com.tuanfans.beans.Monster">
+        <property name="id" value="1"/>
+        <property name="name" value="猪八戒"/>
+        <property name="skill" value="逃跑"/>
+    </bean>
+
+    <bean class="com.tuanfans.beans.Student">
+        <property name="name" value="孙悟空"/>
+    </bean>
+</beans>

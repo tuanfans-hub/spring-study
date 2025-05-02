@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        bean后置处理器:
+        1.bean的后置处理器，在bean初始化前后进行一些操作
+        2.作用在在该xml配置文件中配置的所有bean对象
+        -->
+    <bean class="com.tuanfans.service.MyBeanPostProcessor" id="beanPostProcessor"/>
+
+    <bean class="com.tuanfans.beans.LC_Student" id="student1"
+          init-method="init" destroy-method="destroy">
+        <constructor-arg name="name" value="tuanfans"/>
+    </bean>
+
+    <bean class="com.tuanfans.beans.LC_Student" id="student2"
+          init-method="init" destroy-method="destroy">
+        <constructor-arg name="name" value="XXXX"/>
+    </bean>
+</beans>

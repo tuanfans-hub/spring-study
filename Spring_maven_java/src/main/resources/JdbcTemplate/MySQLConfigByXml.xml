@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- spring包扫描 -->
+    <context:component-scan base-package="com.tuanfans.JdbcTemplate"/>
+    <!-- 读取jdbc配置文件 -->
+    <context:property-placeholder location="classpath:JdbcTemplate/mysql.properties"/>
+    <!-- 配置druid数据源 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${MySQL_DRIVER}"/>
+        <property name="url" value="${MySQL_URL}"/>
+        <property name="username" value="${MySQL_USERNAME}"/>
+        <property name="password" value="${MySQL_PASSWORD}"/>
+    </bean>
+
+    <!-- 配置JDBCTemplate对象，并注入DataSource -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <!-- 通过setter方法注入数据源 -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 通过setter方法注入数据源 -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    <!-- 配置通知 -->
+    <tx:advice id="txAdvice">
+        <tx:attributes>
+            <!-- 配置事务属性
+                 name:方法名
+                 propagation:传播机制
+                 isolation:隔离级别
+                 rollback-for:回滚异常
+                 read-only:只读
+                 timeout:超时时间
+                 isolation-level:隔离级别
+                 ...
+            -->
+            <tx:method name="transMoney"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 配置AOP -->
+    <aop:config>
+        <!-- 配置切点 -->
+        <aop:pointcut id="pc" expression="execution(* com.tuanfans.JdbcTemplate.service.*.transMoney(..))"/>
+        <!-- 配置切面 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pc"/>
+    </aop:config>
+
+</beans>
