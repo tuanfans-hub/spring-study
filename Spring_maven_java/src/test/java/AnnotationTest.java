@@ -20,7 +20,7 @@ public class AnnotationTest {
     public void testFirstAnnotation(){
         AbstractApplicationContext ioc =
                 new ClassPathXmlApplicationContext("annotationBeans/firstAnnotation.xml");
-        UserDao userDao = ioc.getBean("userDao",UserDao.class);
+        UserDao userDao = ioc.getBean("userDaoA",UserDao.class);
         //UserService userService = ioc.getBean("userService",UserService.class);
         UserAction userAction = ioc.getBean("userAction",UserAction.class);
         MyComponent myComponent = ioc.getBean("myComponent",MyComponent.class);

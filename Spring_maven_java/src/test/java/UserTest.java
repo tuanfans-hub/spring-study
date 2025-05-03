@@ -1,3 +1,4 @@
+import com.tuanfans.dao.impl.UserDaoImpl;
 import com.tuanfans.service.UserService;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class UserTest {
     @Test
     public void testUser(){
-        UserService us = new UserService();
+        UserService us = new UserService(new UserDaoImpl());
         us.getUser();
     }
 }

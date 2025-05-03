@@ -1,5 +1,6 @@
 import com.tuanfans.action.UserServiceAction;
 import com.tuanfans.beans.*;
+import com.tuanfans.beans.Student;
 import com.tuanfans.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
